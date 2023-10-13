@@ -5,7 +5,7 @@ import { UserDto } from './user.dto';
 import { User } from './user.model';
 import { EnrichedUserPipe } from './user.pipe';
 
-@Controller('user')
+@Controller('users')
 export class UserController {
   constructor(
     private readonly userService: UserService,
@@ -24,7 +24,7 @@ export class UserController {
   }
   @Post()
   @UsePipes(new EnrichedUserPipe())
-  creat(@Body() userDto: UserDto) {
+  create(@Body() userDto: UserDto) {
     this.logger.log(`Creating user with name ${userDto.name}`);
     const user = this.userService.create(userDto);
     return user;
