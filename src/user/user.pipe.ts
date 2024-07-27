@@ -6,15 +6,15 @@
 */
 
 import { Injectable, PipeTransform } from '@nestjs/common';
-import { UserDto } from './user.dto';
+import { CreateUserDto } from './user.dto';
 
 @Injectable()
 export class EnrichedUserPipe implements PipeTransform {
   // Method to implement a custom pipe.
-  transform(userDto: UserDto): UserDto {
-    const enrichedUser: UserDto = {
+  transform(userDto: CreateUserDto): CreateUserDto {
+    const enrichedUser: CreateUserDto = {
       ...userDto,
-      createdAt: new Date(), // enriching the user with creation timestamp
+      createdAt: new Date().getTime(), // enriching the user with creation timestamp
     };
     return enrichedUser;
   }

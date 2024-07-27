@@ -1,6 +1,6 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
 /*
- - Lifecycles are different stages of an application (initialization, starting, and stopping).
+ - Lifecycle are different stages of an application (initialization, starting, and stopping).
  - NestJS provides hooks that allow you to run code at those specific moments. 
  - These hooks can be used to perform tasks such as connecting to a database, setting up the configuration, or starting a background task.
  - NestJS Life Cycle Hook:-
@@ -9,7 +9,7 @@ import { Injectable, OnModuleInit } from '@nestjs/common';
     3) OnModuleDestroy—called just before the host module is destroyed
     4) OnApplicationShutdown— called when the application shuts down
 
- - Usually, lifecycles are implemented in Services or Providers
+ - Usually, lifecycle are implemented in Services or Providers
 
 */
 

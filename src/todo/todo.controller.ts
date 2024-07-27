@@ -10,7 +10,7 @@ import {
   ParseIntPipe,
 } from '@nestjs/common';
 import { TodoService } from './todo.service';
-import { Todo } from './todo,interface';
+import { Todo } from './todo.interface';
 
 @Controller('todo')
 export class TodoController {

@@ -1,7 +1,17 @@
-import { Controller, Get, Post, Param, Body, UsePipes } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Param,
+  Body,
+  UsePipes,
+  Patch,
+  ParseIntPipe,
+  ValidationPipe,
+} from '@nestjs/common';
 import { UserService } from './user.service';
 import { Logger } from './logger.provider';
-import { UserDto } from './user.dto';
+import { CreateUserDto, UpdateUserDto } from './user.dto';
 import { User } from './user.model';
 import { EnrichedUserPipe } from './user.pipe';
 
@@ -18,16 +28,25 @@ export class UserController {
     return this.userService.findAll();
   }
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id', ParseIntPipe) id: number) {
     this.logger.log(`Getting user by id ${id}`);
     return this.userService.findOne(+id);
   }
   @Post()
   @UsePipes(new EnrichedUserPipe())
-  create(@Body() userDto: UserDto) {
+  create(@Body(ValidationPipe) userDto: CreateUserDto) {
     this.logger.log(`Creating user with name ${userDto.name}`);
     const user = this.userService.create(userDto);
     return user;
+  }
+
+  @Patch(':id')
+  update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body(ValidationPipe) userDto: UpdateUserDto,
+  ) {
+    this.logger.log(`Updating user with id ${id}`);
+    return this.userService.update(+id, userDto);
   }
 }
 
